@@ -49,7 +49,7 @@ public class UserDaoTest {
     @Test
     public void insertPass() throws DataAccessException {
         uDao.insert(bestUser);
-        User compareTest = uDao.find(bestUser.getPersonId());
+        User compareTest = uDao.find(bestUser.getPersonID());
         assertNotNull(compareTest);
         assertEquals(bestUser, compareTest);
     }
@@ -64,13 +64,13 @@ public class UserDaoTest {
     void findPass() throws DataAccessException {
         uDao.insert(bestUser);
         uDao.insert(leastUser);
-        User compareTest = uDao.find(bestUser.getUsername());
+        User compareTest = uDao.find(bestUser.getUserName());
         assertEquals(bestUser, compareTest);
     }
 
     @Test
     void findFail() throws DataAccessException {
-        assertNull(uDao.find(leastUser.getUsername()));
+        assertNull(uDao.find(leastUser.getUserName()));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class UserDaoTest {
         uDao.insert(bestUser);
         uDao.insert(leastUser);
         uDao.clear();
-        assertNull(uDao.find(leastUser.getPersonId()));
-        assertNull(uDao.find(bestUser.getPersonId()));
+        assertNull(uDao.find(leastUser.getPersonID()));
+        assertNull(uDao.find(bestUser.getPersonID()));
     }
 }

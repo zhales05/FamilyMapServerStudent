@@ -15,10 +15,40 @@ public class Event {
     private String eventType;
     private int year;
 
+    public void setAssociatedUsername(String associatedUsername) {
+        this.associatedUsername = associatedUsername;
+    }
+
+    public void setPersonID(String personID) {
+        this.personID = personID;
+    }
+
+    public void setLatitude(float latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(float longitude) {
+        this.longitude = longitude;
+    }
+
+
+
     public Event(String eventID, String username, String personID, float latitude, float longitude,
                  String country, String city, String eventType, int year) {
         this.eventID = eventID;
         this.associatedUsername = username;
+        this.personID = personID;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.country = country;
+        this.city = city;
+        this.eventType = eventType;
+        this.year = year;
+    }
+
+    public Event(String eventID, String personID, float latitude, float longitude,
+                 String country, String city, String eventType, int year) {
+        this.eventID = eventID;
         this.personID = personID;
         this.latitude = latitude;
         this.longitude = longitude;

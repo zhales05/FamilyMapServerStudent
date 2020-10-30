@@ -4,22 +4,22 @@ package model;
  * class in charge of handling users
  */
 public class User {
-    String username;
+    String userName;
     String password;
     String email;
     String firstName;
     String lastName;
     String gender;
-    String personId;
+    String personID;
 
-    public User(String username, String password, String email, String firstName, String lastName, String gender, String personId) {
-        this.username = username;
+    public User(String username, String password, String email, String firstName, String lastName, String gender, String personID) {
+        this.userName = username;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.personId = personId;
+        this.personID = personID;
     }
 
 
@@ -29,16 +29,16 @@ public class User {
      * @return userName Unique user name (non-empty string)
      */
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
     /**
      * setter for username
      * @param username Unique user name (non-empty string)
      */
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String username) {
+        this.userName = username;
     }
 
     /**
@@ -122,16 +122,16 @@ public class User {
      * getter for personId
      * @return personId Unique Person ID assigned to this user’s generated Person object - see Family History Information section for details (non-empty string)
      */
-    public String getPersonId() {
-        return personId;
+    public String getPersonID() {
+        return personID;
     }
 
     /**
      * setter for personId
-     * @param personId
+     * @param personID
      */
-    public void setPersonId(String personId) {
-        this.personId = personId;
+    public void setPersonID(String personID) {
+        this.personID = personID;
     }
 
     /**
@@ -145,13 +145,13 @@ public class User {
             return false;
         if (o instanceof User) {
             User oUser = (User) o;
-            return  oUser.getUsername().equals(getUsername()) &&
+            return  oUser.getUserName().equals(getUserName()) &&
                     oUser.getPassword().equals(getPassword()) &&
                     oUser.getEmail().equals(getEmail()) &&
                     oUser.getFirstName().equals(getFirstName()) &&
                     oUser.getLastName().equals(getLastName()) &&
                     oUser.getGender().equals(getGender()) &&
-                    oUser.getPersonId().equals(getPersonId());
+                    oUser.getPersonID().equals(getPersonID());
         } else {
             return false;
         }

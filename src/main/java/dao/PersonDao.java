@@ -1,10 +1,13 @@
 package dao;
 
 import model.AuthToken;
+import model.Event;
 import model.Person;
 import model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * in between for database and Person class
@@ -84,6 +87,38 @@ public class PersonDao {
         return null;
     }
 
+    public List<Person> findAllWithUserName(String userName) throws DataAccessException {
+        Person person;
+        List<Person> personList = new ArrayList<>();
+        ResultSet rs = null;
+        String sql = "SELECT * FROM Persons WHERE associatedusername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, userName);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                person = person = new Person(rs.getString("personID"), rs.getString("associatedUsername"),
+                        rs.getString("firstName"), rs.getString("lastName"),
+                        rs.getString("gender"), rs.getString("fatherID"), rs.getString("motherID"),
+                        rs.getString("spouseID"));
+                personList.add(person);
+            }
+            return personList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding event");
+        } finally {
+            if(rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
     /**
      * clears the entire person table
      */
@@ -109,4 +144,37 @@ public class PersonDao {
             throw new DataAccessException("Error encountered while deleting person");
         }
     }
+
+    public void deleteWithUserName(String userName) throws DataAccessException {
+        String sql = "DELETE FROM Persons WHERE associatedusername = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, userName);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while deleting persons");
+        }
+    }
+
+    public void updateFatherID(String fatherID, String personID) throws DataAccessException {
+        String sql = "UPDATE Persons SET fatherID = ? WHERE personID = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, fatherID);
+            stmt.setString(2,personID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while updating ID");
+        }
+    }
+
+    public void updateMotherID(String motherID, String personID) throws DataAccessException {
+        String sql = "UPDATE Persons SET motherID = ? WHERE personID = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, motherID);
+            stmt.setString(2,personID);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new DataAccessException("Error encountered while updating ID");
+        }
+    }
+
 }

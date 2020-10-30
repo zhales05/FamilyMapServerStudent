@@ -1,15 +1,9 @@
 package Services;
 
-public class FillResult {
+public class ClearResult {
 
     String message;
     boolean success;
-
-    public FillResult(boolean success, String message) {
-        this.success = success;
-        this.message = message;
-    }
-
 
     public String getMessage() {
         return message;
@@ -26,4 +20,10 @@ public class FillResult {
     public void setSuccess(boolean success) {
         this.success = success;
     }
+
+    public ClearResult(boolean success, String message) {
+        this.success = success;
+        this.message = message;
+    }
+
 }

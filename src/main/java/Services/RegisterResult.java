@@ -5,16 +5,16 @@ package Services;
  */
 public class RegisterResult {
 
-    String AuthToken;
+    String authToken;
     String userName;
-    String personId;
+    String personID;
     String message;
     boolean success;
 
     public RegisterResult(String authToken, String userName, String personId) {
-        AuthToken = authToken;
+        this.authToken = authToken;
         this.userName = userName;
-        this.personId = personId;
+        this.personID = personId;
         this.success = true;
     }
 
@@ -38,5 +38,45 @@ public class RegisterResult {
      */
     public RegisterResult getFail() {
         return null;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPersonId() {
+        return personID;
+    }
+
+    public void setPersonId(String personId) {
+        this.personID = personId;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
     }
 }

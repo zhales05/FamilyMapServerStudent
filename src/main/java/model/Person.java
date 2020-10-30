@@ -33,9 +33,13 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.fatherID = fatherID;
-        this.motherID = motherID;
-        this.spouseID = spouseID;
+    }
+
+    public Person(String personID, String firstName, String lastName, String gender) {
+        this.personID = personID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
     }
 
     public String getPersonID() {
@@ -102,6 +106,18 @@ public class Person {
         this.motherID = motherID;
     }
 
+
+    public String getAssociatedUsername() {
+        return associatedUsername;
+    }
+
+    public void setAssociatedUsername(String associatedUsername) {
+        this.associatedUsername = associatedUsername;
+    }
+
+    public void setSpouseID(String spouseID) {
+        this.spouseID = spouseID;
+    }
 
     public String getSpouseID() {
         return spouseID;

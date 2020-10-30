@@ -2,6 +2,7 @@ package handlers;
 
 import Services.Register;
 import Services.RegisterRequest;
+import Services.RegisterResult;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -11,6 +12,7 @@ import model.User;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 
 public class RegisterRequestHandler implements HttpHandler {
@@ -38,10 +40,6 @@ public class RegisterRequestHandler implements HttpHandler {
         // 5. How to check an incoming HTTP request for an auth token
 
         try {
-            // Determine the HTTP request type (GET, POST, etc.).
-            // Only allow POST requests for this operation.
-            // This operation requires a POST request, because the
-            // client is "posting" information to the server for processing.
             if (exchange.getRequestMethod().toUpperCase().equals("POST")) {
 
                 // Get the HTTP request headers
@@ -62,21 +60,30 @@ public class RegisterRequestHandler implements HttpHandler {
                     // TODO: Claim a route based on the request data
                     RegisterRequest rr = ObjectConverter.deserialize(reqData, RegisterRequest.class);
                     registerObject = new Register();
-                    registerObject.register(rr);
+                    RegisterResult returnValue = registerObject.register(rr);
+                    String returnString = ObjectConverter.serialize(returnValue);
+                    OutputStream respBody = exchange.getResponseBody();
+                    System.out.println(returnValue.isSuccess());
+
 
 
                     // Start sending the HTTP response to the client, starting with
                     // the status code and any defined headers.
-                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+                    if (returnValue.isSuccess()) {
+                        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+                    }
+                    else {
+                        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+                    }
+                    respBody.write(returnString.getBytes()); // trying to convert string to Outputstream.
+                    respBody.close();
+
 
             } else {
                 // We expected a POST but got something else, so we return a "bad request"
                 // status code to the client.
                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
             }
-
-            // We are not sending a response body, so close the response body
-            // output stream, indicating that the response is complete.
             exchange.getResponseBody().close();
         } catch (IOException e) {
             // Some kind of internal error has occurred inside the server (not the
@@ -106,4 +113,6 @@ public class RegisterRequestHandler implements HttpHandler {
         }
         return sb.toString();
     }
+
+
 }

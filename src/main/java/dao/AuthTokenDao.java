@@ -1,11 +1,9 @@
 package dao;
 
 import model.AuthToken;
+import model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * in between for database and AuthToken class
@@ -52,11 +50,35 @@ public class AuthTokenDao {
 
     /**
      * Used to grab array of tokens associated with the user
-     * @param personID
+     * @param token
      * @return array of all the AuthTokens that are active for that user
      */
-    public AuthToken[] find(String personID) {
+    public AuthToken find(String token) throws DataAccessException {
+        AuthToken aToken;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM AuthTokens WHERE AuthTokenID = ?;";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, token);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                aToken = new AuthToken(rs.getString("PersonID"), rs.getString("AuthTokenID"));
+                return aToken;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding AuthToken");
+        } finally {
+            if(rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
         return null;
+
     }
 
     /**

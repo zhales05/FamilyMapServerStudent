@@ -3,31 +3,63 @@ package Services;
  * Class of LoginResult object. Return Success or Failure
  */
 public class LoginResult {
-    String AuthToken;
+    String authToken;
     String userName;
-    String personId;
+    String personID;
     boolean success;
+    String message;
 
-    public LoginResult(String authToken, String userName, String personId, boolean success) {
-        AuthToken = authToken;
+    public LoginResult(String authToken, String userName, String personId) {
+        this.authToken = authToken;
         this.userName = userName;
-        this.personId = personId;
+        this.personID = personId;
+        success = true;
+    }
+
+    public LoginResult(String message) {
+        this.message = message;
+        success = false;
+    }
+
+    public String getAuthToken() {
+        return authToken;
+    }
+
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPersonID() {
+        return personID;
+    }
+
+    public void setPersonID(String personID) {
+        this.personID = personID;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
         this.success = success;
     }
 
-    /**
-     *
-     * @return success object
-     */
-    public LoginResult getSuccess() {
-        return null;
+    public String getMessage() {
+        return message;
     }
 
-    /**
-     *
-     * @return fail object
-     */
-    public LoginResult getFail() {
-        return null;
+    public void setMessage(String message) {
+        this.message = message;
     }
+
+
 }

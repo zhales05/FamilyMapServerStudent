@@ -2,26 +2,26 @@ package Services;
 
 public class LoginRequest {
 
-    String username;
+    String userName;
     String password;
 
     /**
      * constructor that sets variables for Login Request
-     * @param username
+     * @param userName
      * @param password
      */
 
-    public LoginRequest(String username, String password) {
-        this.username = username;
+    public LoginRequest(String userName, String password) {
+        this.userName = userName;
         this.password = password;
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.userName = username;
     }
 
     public String getPassword() {

@@ -1,5 +1,6 @@
 package handlers;
 
+import Services.Register;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -19,6 +20,7 @@ public class FileRequestHandler implements HttpHandler {
             if (urlPath == null || urlPath.equals("/")) {
                 urlPath = "/index.html";
             }
+
             String filePath = "web" + urlPath;
             File newFile = new File(filePath);
 
@@ -26,7 +28,7 @@ public class FileRequestHandler implements HttpHandler {
 
             if (!newFile.exists()) {
                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_NOT_FOUND, 0);
-                File error = new File("web" + "404.html");
+                File error = new File("web" + "/HTML/404.html");
                 Files.copy(error.toPath(), respBody);
                 respBody.close();
 
@@ -42,5 +44,6 @@ public class FileRequestHandler implements HttpHandler {
             // status code to the client.
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
         }
+
     }
 }

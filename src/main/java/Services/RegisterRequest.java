@@ -1,18 +1,26 @@
 package Services;
 
 public class RegisterRequest {
+    String userName;
+    String password;
+    String email;
+    String firstName;
+    String lastName;
+    String gender;
+   // String personID;
 
     /**
-     * sets all variables
-     * @param userName
+     *
+     * @param username
      * @param password
      * @param email
      * @param firstName
      * @param lastName
      * @param gender
      */
-    public RegisterRequest(String userName, String password, String email, String firstName, String lastName, String gender) {
-        this.userName = userName;
+
+    public RegisterRequest(String username, String password, String email, String firstName, String lastName, String gender) {
+        this.userName = username;
         this.password = password;
         this.email = email;
         this.firstName = firstName;
@@ -20,19 +28,24 @@ public class RegisterRequest {
         this.gender = gender;
     }
 
-    String userName;
-    String password;
-    String email;
-    String firstName;
-    String lastName;
-    String gender;
+    /*public RegisterRequest(String userName, String password, String email, String firstName, String lastName, String gender, String personID) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.personID = personID;
+    }*/
+
+
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.userName = username;
     }
 
     public String getPassword() {
@@ -74,4 +87,12 @@ public class RegisterRequest {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+   /* public String getPersonID() {
+        return personID;
+    }
+
+    public void setPersonID(String personID) {
+        this.personID = personID;
+    }*/
 }

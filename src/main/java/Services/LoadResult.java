@@ -1,11 +1,10 @@
 package Services;
 
-public class FillResult {
-
+public class LoadResult {
     String message;
     boolean success;
 
-    public FillResult(boolean success, String message) {
+    public LoadResult(boolean success, String message) {
         this.success = success;
         this.message = message;
     }
@@ -26,4 +25,6 @@ public class FillResult {
     public void setSuccess(boolean success) {
         this.success = success;
     }
+
+
 }

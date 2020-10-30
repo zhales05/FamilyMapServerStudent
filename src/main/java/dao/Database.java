@@ -72,6 +72,8 @@ public class Database {
             stmt.executeUpdate(sql);
             sql = "DELETE FROM Persons";
             stmt.executeUpdate(sql);
+            sql = "DELETE FROM AuthTokens";
+            stmt.executeUpdate(sql);
         } catch (SQLException e) {
             throw new DataAccessException("SQL Error encountered while clearing tables");
         }
