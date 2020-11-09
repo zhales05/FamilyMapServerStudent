@@ -13,6 +13,18 @@ public class AuthToken {
         this.authToken = authToken;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (o instanceof AuthToken) {
+            AuthToken authToken = (AuthToken) o;
+            return authToken.getPersonID().equals(getPersonID()) &&
+                    authToken.getAuthToken().equals(getAuthToken());
+        } else {
+            return false;
+        }
+    }
     public String getPersonID() {
         return personID;
     }

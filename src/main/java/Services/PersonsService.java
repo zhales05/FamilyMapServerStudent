@@ -43,8 +43,6 @@ public class PersonsService {
             }
 
             User user = uDao.findWithPersonID(authToken.getPersonID());
-            //eDao.testEntries();
-           // eDao.findWithEventID("Davis_Birth");
 
             personList = pDao.findAllWithUserName(user.getUserName());
             personResult = new PersonResult(personList);

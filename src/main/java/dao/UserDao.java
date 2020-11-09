@@ -116,13 +116,4 @@ public class UserDao {
             throw new DataAccessException("SQL Error encountered while clearing Users");
         }
     }
-
-    /**
-     * delete from database
-     * @param toDelete
-     * @return if it was successful or not
-     */
-    public boolean delete(User toDelete) {
-        return Boolean.parseBoolean(null);
-    }
 }

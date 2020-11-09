@@ -10,12 +10,11 @@ public class FillRequest {
         char slashCheck = url.charAt(url.length()-1);
 
         if(slashCheck == '/') {
-            url = url.substring(0,url.length());
+            url = url.substring(0,url.length()-1);
             username = url;
             generations = 4;
         }
 
-        //int index = url.indexOf("/");
         username = url.substring(1, url.length()-2);
         generations = Integer.parseInt((url.substring(url.length()-1)));
     }

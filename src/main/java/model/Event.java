@@ -15,6 +15,10 @@ public class Event {
     private String eventType;
     private int year;
 
+    public String getAssociatedUsername() {
+        return associatedUsername;
+    }
+
     public void setAssociatedUsername(String associatedUsername) {
         this.associatedUsername = associatedUsername;
     }

@@ -12,15 +12,12 @@ import java.net.InetSocketAddress;
 public class FamilyMapServer {
 
     public static void main(String[] args)  {
-        int port = Integer.parseInt(args[0]);  //where do I get this from? Is host not local host?
+        int port = Integer.parseInt(args[0]);
         try {
             startServer(port);
         } catch (IOException e) {
-            System.out.println("FamilyMapServer not going well");
             e.printStackTrace();
         }
-
-     //   exper();
     }
 
     private static void startServer(int port) throws IOException {
@@ -46,9 +43,9 @@ public class FamilyMapServer {
         //ClearRequestHandler r = new ClearRequestHandler();
        // Clear clear = new Clear();
        // clear.clearData();
-        Register r =  new Register();
-        RegisterRequest rr = new RegisterRequest("sheila", "parker", "sheila@parker.com", "Sheila","Parker","f");
-        r.register(rr);
+       // Register r =  new Register();
+       // RegisterRequest rr = new RegisterRequest("sheila", "parker", "sheila@parker.com", "Sheila","Parker","f");
+        //r.register(rr);
 
         Fill f = new Fill();
         FillRequest fr = new FillRequest("/fill/sheila/2");

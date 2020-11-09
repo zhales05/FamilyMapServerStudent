@@ -10,25 +10,20 @@ public class EventDao {
 
     private final Connection conn;
 
-    public EventDao(Connection conn)
-    {
+    public EventDao(Connection conn) {
         this.conn = conn;
     }
 
     /**
      * insert an event into the database
+     *
      * @param event
      * @throws DataAccessException
      */
     public void insert(Event event) throws DataAccessException {
-        //We can structure our string to be similar to a sql command, but if we insert question
-        //marks we can change them later with help from the statement
         String sql = "INSERT INTO Events (EventID, AssociatedUsername, PersonID, Latitude, Longitude, " +
                 "Country, City, EventType, Year) VALUES(?,?,?,?,?,?,?,?,?)";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            //Using the statements built-in set(type) functions we can pick the question mark we want
-            //to fill in and give it a proper value. The first argument corresponds to the first
-            //question mark found in our sql String
             stmt.setString(1, event.getEventID());
             stmt.setString(2, event.getUsername());
             stmt.setString(3, event.getPersonID());
@@ -47,6 +42,7 @@ public class EventDao {
 
     /**
      * find and return and event based on eventID
+     *
      * @param personID
      * @return
      * @throws DataAccessException
@@ -69,7 +65,7 @@ public class EventDao {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while finding event");
         } finally {
-            if(rs != null) {
+            if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
@@ -99,7 +95,7 @@ public class EventDao {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while finding event");
         } finally {
-            if(rs != null) {
+            if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
@@ -129,7 +125,7 @@ public class EventDao {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while finding event");
         } finally {
-            if(rs != null) {
+            if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
@@ -162,7 +158,7 @@ public class EventDao {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while finding event");
         } finally {
-            if(rs != null) {
+            if (rs != null) {
                 try {
                     rs.close();
                 } catch (SQLException e) {
@@ -172,39 +168,14 @@ public class EventDao {
 
         }
     }
-    public void testEntries() throws DataAccessException {
-        Event event;
-        ResultSet rs = null;
-        String sql = "SELECT * FROM Events";
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                event = new Event(rs.getString("EventID"), rs.getString("AssociatedUsername"),
-                        rs.getString("PersonID"), rs.getFloat("Latitude"), rs.getFloat("Longitude"),
-                        rs.getString("Country"), rs.getString("City"), rs.getString("EventType"),
-                        rs.getInt("Year"));
-                System.out.println("EventID: " + event.getEventID() + " Username " + event.getUsername() + "");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new DataAccessException("Error encountered while finding event");
-        } finally {
-            if(rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
 
-        }
-    }
     /**
      * clears the Events table
+     *
      * @throws DataAccessException
      */
-    public void clear() throws DataAccessException{
-        try (Statement stmt = conn.createStatement()){
+    public void clear() throws DataAccessException {
+        try (Statement stmt = conn.createStatement()) {
             String sql = "DELETE FROM Events";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {

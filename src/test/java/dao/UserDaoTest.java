@@ -1,4 +1,4 @@
-package mytests;
+package dao;
 
 import dao.DataAccessException;
 import dao.Database;
@@ -49,7 +49,7 @@ public class UserDaoTest {
     @Test
     public void insertPass() throws DataAccessException {
         uDao.insert(bestUser);
-        User compareTest = uDao.find(bestUser.getPersonID());
+        User compareTest = uDao.find(bestUser.getUserName());
         assertNotNull(compareTest);
         assertEquals(bestUser, compareTest);
     }
@@ -80,5 +80,18 @@ public class UserDaoTest {
         uDao.clear();
         assertNull(uDao.find(leastUser.getPersonID()));
         assertNull(uDao.find(bestUser.getPersonID()));
+    }
+
+    @Test
+    void findPIPass() throws DataAccessException {
+        uDao.insert(bestUser);
+        uDao.insert(leastUser);
+        User compareTest = uDao.findWithPersonID(bestUser.getPersonID());
+        assertEquals(bestUser, compareTest);
+    }
+
+    @Test
+    void findPIFail() throws DataAccessException {
+        assertNull(uDao.findWithPersonID(leastUser.getPersonID()));
     }
 }

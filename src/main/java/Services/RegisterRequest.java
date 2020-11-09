@@ -7,10 +7,8 @@ public class RegisterRequest {
     String firstName;
     String lastName;
     String gender;
-   // String personID;
 
     /**
-     *
      * @param username
      * @param password
      * @param email
@@ -27,18 +25,6 @@ public class RegisterRequest {
         this.lastName = lastName;
         this.gender = gender;
     }
-
-    /*public RegisterRequest(String userName, String password, String email, String firstName, String lastName, String gender, String personID) {
-        this.userName = userName;
-        this.password = password;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.personID = personID;
-    }*/
-
-
 
     public String getUserName() {
         return userName;
@@ -87,12 +73,4 @@ public class RegisterRequest {
     public void setGender(String gender) {
         this.gender = gender;
     }
-
-   /* public String getPersonID() {
-        return personID;
-    }
-
-    public void setPersonID(String personID) {
-        this.personID = personID;
-    }*/
 }

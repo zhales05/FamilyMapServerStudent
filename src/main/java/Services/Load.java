@@ -56,7 +56,7 @@ public class Load {
         return loadResult;
     }
 
-    void populateClasses(LoadRequest lr) {
+    private void populateClasses(LoadRequest lr) {
         UserDao uDao = new UserDao(conn);
         PersonDao pDao = new PersonDao(conn);
         EventDao eDao = new EventDao(conn);
@@ -70,7 +70,6 @@ public class Load {
             for (Event event : lr.getEvents()) {
                 eDao.insert(event);
             }
-           // db.closeConnection(true);
         } catch (DataAccessException e) {
             e.printStackTrace();
         }

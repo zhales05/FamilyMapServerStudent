@@ -21,23 +21,6 @@ public class RegisterResult {
     public RegisterResult(String message) {
         this.message = message;
         this.success = false;
-        //getFail();
-    }
-
-    /**
-     *
-     * @return success object
-     */
-    public RegisterResult getSuccess() {
-        return null;
-    }
-
-    /**
-     *
-     * @return fail object
-     */
-    public RegisterResult getFail() {
-        return null;
     }
 
     public String getAuthToken() {
