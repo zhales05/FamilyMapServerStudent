@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="FamilyMapServerStudent" target="1.12" />
+      <module name="FMS" target="14" />
+      <module name="FMS.main" target="14" />
+      <module name="FMS.test" target="14" />
+      <module name="org.example.Shared.main" target="14" />
+      <module name="org.example.Shared.test" target="14" />
+      <module name="Shared" target="14" />
+      <module name="Shared.main" target="14" />
+      <module name="Shared.test" target="14" />
+      <module name="Shared1.main" target="14" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
